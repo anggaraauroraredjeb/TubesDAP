@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Museum Sejarah Kota Bandung – Virtual Tour</title>
+  <link rel="stylesheet" href="../style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', Helvetica, sans-serif;
+            background-color: #ffd0a0;
+        }
+
+        /* Header */
+        .header {
+            padding: 280px 50px;
+            text-align: center;
+            background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzno_eJPbqoQWu64meyvNmRveh1xLh93XjgAO4n9U7j0A1UWqvme3hvprWdkYYhs9WTYgxisN2-l36LAi0WrubCAadI8QHumj3660X52JesapqEtthwVIVLmZE7wEaRogQocLttQA=s1360-w1360-h1020-rw');
+            background-position: center;
+            background-size: cover;
+            color: white;
+            text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        .header h1 {
+            font-size: 48px;
+        }
+
+        .header p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+ /* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #f9b05d, #d27e4a);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-navbar {
+    height: 90px;
+    margin-right: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #333;
+    padding: 12px 15px;
+}
+
+.dropdown-menu a:hover {
+    background: #f9b05d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+            padding: 10px;
+        }
+
+        /* Layout utama */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar */
+        .side {
+            flex: 30%;
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .side h2, .side h3 {
+            color: #f9b05d;
+            border-bottom: 2px solid #f9b05d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .side ul {
+            list-style: none;
+        }
+
+        .side ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .side ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+
+        .side ul li a:hover {
+            color: #f9b05d;
+        }
+
+        .info-box {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        /* Main content */
+        .main {
+            flex: 70%;
+            background-color: #ffefdf;
+            padding: 30px;
+        }
+
+        .main h2 {
+            color: #d27e4a;
+            border-bottom: 3px solid #f9b05d;
+            padding-bottom: 10px;
+        }
+
+        .main h5 {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        /* Card Gambar */
+        .image-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 25px 0;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-card .caption {
+            padding: 15px;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            background: #f9f9f9;
+        }
+
+  .footer{
+    padding:30px;
+    text-align:center;
+    background:linear-gradient(to right, #f9b05d, #d27e4a);
+    color:white;
+    font-size:14px;
+}
+
+.footer h2{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.footer p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#eee;
+}
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .navbar {
+                justify-content: space-between;
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: linear-gradient(to right, #f9b05d, #d27e4a);
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .logo-navbar {
+                margin-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .row {
+                flex-direction: column;
+            }
+            .side {
+                position: static;
+                height: auto;
+            }
+        }
+/* PANAH DROPDOWN */
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arrow{
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+/* Panah muter saat hover (desktop) */
+.dropdown:hover .arrow{
+    transform: rotate(180deg);
+}
+</style>
+</head>
+<body data-page="tour">
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="Logomuseum.png" class="logo-navbar">
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Beranda</a>
+        <a href="appointment.html">Reservasi Museum</a>
+        <a href="registrasipengunjung.html">Registrasi Pengunjung</a>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+            Museum Virtual <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="museumLayout.html">Layout Interaktif</a>
+                <a href="virtualTour.html">Virtual Tour</a>
+                <a href="virtualTour3D.html">Virtual Tour 3D</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+               Informasi <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="maps.html">Maps</a>
+                <a href="contactform.html">Contact Us</a>
+                <a href="event.html">Jadwal Event</a>
+                <a href="pameran.html">Pameran</a>
+                <a href="Relawan.html">Relawan & Donatur</a>
+            </div>
+        </div>
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+    
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+</div>
+
+<main>
+  <div class="card">
+    <h2>360° Virtual Tour</h2>
+    <p>Jelajahi Museum Sejarah Kota Bandung secara virtual.</p>
+    <iframe src="https://koala360.com/tour?id=43175&preview=true" style="border:none;" class="my360Tour" name="my360Tour" scrolling="no" allow="vr; xr; accelerometer; magnetometer; gyroscope; webvr; webxr;" frameborder="0" height="500px" width="100%" allowfullscreen webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
+    <div>
+</main>
+
+<script src="../script.js"></script>
+
+<div class="footer">
+    <h2>© 2025 Museum Kota Bandung</h2>
+    <p>Website resmi Museum Kota Bandung | Dibuat oleh kelompok 1</p>
+</div>
+</body>
+</html>

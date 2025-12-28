@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partisipasi Masyarakat | Museum Kota Bandung</title>
+
+<style>
+:root {
+  --primary-color: #804a18; 
+  --secondary-color: #a75c26; 
+  --bg-color: #ffefdf; 
+  --card-bg: #ffefdf;
+  --text-dark: #2C2C2C;
+  --text-light: #666;
+  --shadow: 0 10px 30px rgba(139, 69, 19, 0.08);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+}
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #f9b05d, #d27e4a);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-navbar {
+    height: 90px;
+    margin-right: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #333;
+    padding: 12px 15px;
+}
+
+.dropdown-menu a:hover {
+    background: #f9b05d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+  height: 50vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('sejarah 2.jpeg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  max-width: 900px;
+  line-height: 1.2;
+  border-bottom: 3px solid var(--secondary-color);
+  padding-bottom: 20px;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  max-width: 1000px;
+  margin: -100px auto 60px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+  flex: 1;
+}
+
+/* ================= INTRO CARD ================= */
+.intro-card {
+  background: #ffefdf;  
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.15);  
+  text-align: center;
+  margin-bottom: 45px;
+  position: relative;
+  z-index: 20;
+}
+
+.intro-text {
+  font-size: 18px;
+  color: var(--text-light);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ================= SELECTION CARDS ================= */
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 5px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+}
+
+.card h2 {
+  font-size: 24px;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 15px;
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-back:hover {
+  background: #f0f0f0;
+  color: var(--text-dark);
+}
+
+/* ================= FORMS ================= */
+.form-section {
+  background: #ffefdf;
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: none;
+  animation: slideUp 0.5s ease-out;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-header h2 {
+  font-size: 32px;
+  color: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.req { color: #e74c3c; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  background-color: #fffaf5;
+}
+
+input[type="file"] {
+  background: #f9f9f9;
+  padding: 10px;
+}
+
+/* ================= NOTIFICATION ================= */
+.notif {
+  background: #e3fcef;
+  border-left: 5px solid #2ecc71;
+  padding: 30px;
+  border-radius: 8px;
+  display: none;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+
+.notif h3 {
+  color: #27ae60;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footer{
+    padding:30px;
+    text-align:center;
+    background:linear-gradient(to right, #f9b05d, #d27e4a);
+    color:white;
+    font-size:14px;
+}
+
+.footer h2{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.footer p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#eee;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Tweak */
+@media (max-width: 768px) {
+  .form-section { padding: 25px; }
+  .intro-card { padding: 25px; }
+}
+
+/* PANAH DROPDOWN */
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arrow{
+    font-size: 12px;
+    transition: transform 0.5s ease;
+}
+
+/* Panah muter saat hover (desktop) */
+.dropdown:hover .arrow{
+    transform: rotate(180deg);
+}
+</style>
+
+<script>
+// Fungsi untuk menyembunyikan semua section
+function hideAll() {
+  document.getElementById("cards-area").style.display = "none";
+  document.getElementById("form-relawan").style.display = "none";
+  document.getElementById("form-donatur").style.display = "none";
+  document.getElementById("notif-area").style.display = "none";
+  document.getElementById("intro-area").style.display = "none";
+}
+
+// Menampilkan Form
+function tampilkanForm(id) {
+  hideAll();
+  const target = document.getElementById(id);
+  target.style.display = "block";
+  
+  // Scroll halus ke area form
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Kembali ke menu awal tanpa refresh
+function kembaliKeMenu() {
+  hideAll();
+  document.getElementById("cards-area").style.display = "grid";
+  document.getElementById("intro-area").style.display = "block";
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Submit Form
+function kirimForm(e, jenis) {
+  e.preventDefault();
+  hideAll();
+
+  const title = document.getElementById("notif-title");
+  const text = document.getElementById("notif-text");
+
+  if (jenis === "relawan") {
+    title.innerText = "Pendaftaran Berhasil Dikirim!";
+    text.innerText = "Terima kasih telah mendaftar sebagai Relawan. Tim kami akan menghubungi Anda melalui email dalam 3x24 jam.";
+  } else if (jenis === "donatur") {
+    title.innerText = "Terima Kasih, Orang Baik!";
+    text.innerText = "Donasi Anda sangat berarti bagi pelestarian sejarah. Bukti donasi telah kami terima untuk diverifikasi.";
+  }
+
+  const notifArea = document.getElementById("notif-area");
+  notifArea.style.display = "block";
+  notifArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+} 
+
+</script>
+
+</head>
+<body>
+<body>
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="Logomuseum.png" class="logo-navbar">
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Beranda</a>
+        <a href="appointment.html">Reservasi Museum</a>
+        <a href="registrasipengunjung.html">Registrasi Pengunjung</a>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+            Museum Virtual <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="museumLayout.html">Layout Interaktif</a>
+                <a href="virtualTour.html">Virtual Tour</a>
+                <a href="virtualTour3D.html">Virtual Tour 3D</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+               Informasi <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="maps.html">Maps</a>
+                <a href="contactform.html">Contact Us</a>
+                <a href="event.html">Jadwal Event</a>
+                <a href="pameran.html">Pameran</a>
+                <a href="Relawan.html">Relawan & Donatur</a>
+            </div>
+        </div>
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<div class="hero">
+  <h1>Wujudkan Kepedulian Anda Terhadap<br>Sejarah Kota Bandung</h1>
+</div>
+
+<div class="container">
+
+  <div id="intro-area" class="intro-card">
+    <p class="intro-text">
+      Museum Kota Bandung bukan sekadar tempat penyimpanan benda kuno, melainkan ruang hidup bagi memori kota. 
+      Mari ambil bagian dalam merawat ingatan ini melalui tenaga atau dukungan dana.
+    </p>
+  </div>
+
+  <div id="cards-area" class="cards-wrapper">
+    <div class="card">
+      <div>
+        <h2>Relawan Museum</h2>
+        <p>Bergabunglah menjadi garda terdepan dalam menyebarkan wawasan sejarah. Cocok untuk pelajar, mahasiswa, dan pegiat sejarah.</p>
+      </div>
+      <button class="btn btn-primary" onclick="tampilkanForm('form-relawan')">
+        Daftar Relawan
+      </button>
+    </div>
+
+    <div class="card">
+      <div>
+        <h2>Donatur Museum</h2>
+        <p>Dukungan Anda membantu kami merawat koleksi arsip tua, digitalisasi museum, dan penyelenggaraan pameran gratis.</p>
+      </div>
+      <button class="btn btn-primary" onclick="tampilkanForm('form-donatur')">
+        Mulai Donasi
+      </button>
+    </div>
+  </div>
+
+  <div id="form-relawan" class="form-section">
+    <button type="button" class="btn btn-back" onclick="kembaliKeMenu()">
+      &#8592; Kembali ke Pilihan
+    </button>
+    
+    <div class="form-header">
+      <h2>Formulir Relawan</h2>
+      <p style="color:#666">Isi data diri Anda untuk bergabung bersama kami.</p>
+    </div>
+
+    <form onsubmit="kirimRelawan(event)">
+      <div class="form-group">
+        <label>Nama Lengkap <span class="req">*</span></label>
+        <input type="text" id="namaRelawan" placeholder="Masukkan nama lengkap" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email Aktif <span class="req">*</span></label>
+        <input type="email" id="emailRelawan" placeholder="contoh@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Posisi yang Diminati</label>
+        <select id="posisiRelawan">
+          <option>Tour Guide (Pemandu)</option>
+          <option>Customer Service</option>
+          <option>Tim Kreatif & Event</option>
+          <option>Administrasi Arsip</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Motivasi Bergabung <span class="req">*</span></label>
+        <textarea id="motivasiRelawan" rows="5" placeholder="Ceritakan mengapa Anda ingin menjadi bagian dari kami..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Kirim Pendaftaran</button>
+    </form>
+  </div>
+
+  <div id="form-donatur" class="form-section">
+    <button type="button" class="btn btn-back" onclick="kembaliKeMenu()">
+      &#8592; Kembali ke Pilihan
+    </button>
+
+    <div class="form-header">
+      <h2>Formulir Donasi</h2>
+      <p style="color:#666">Salurkan bantuan Anda untuk pelestarian budaya.</p>
+    </div>
+
+    <form onsubmit="kirimForm(event,'donatur')">
+      <div class="form-group">
+        <label>Nama Donatur / Instansi <span class="req">*</span></label>
+        <input type="text" placeholder="Nama Anda atau Perusahaan" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" placeholder="Untuk pengiriman bukti donasi" required>
+      </div>
+
+      <div class="form-group">
+        <label>Nominal Donasi (Rp)</label>
+        <input type="number" placeholder="Contoh: 100000" min="10000">
+      </div>
+
+      <div class="form-group">
+        <label>Unggah Bukti Transfer</label>
+        <input type="file" accept="image/*,application/pdf">
+        <small style="color:#888; display:block; margin-top:5px;">Format: JPG, PNG, atau PDF (Maks 2MB)</small>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Konfirmasi Donasi</button>
+    </form>
+  </div>
+
+  <div id="notif-area" class="notif">
+    <h3 id="notif-title"></h3>
+    <p id="notif-text" style="font-size:16px; color:#444; margin-bottom:20px;"></p>
+    <button class="btn btn-primary" onclick="kembaliKeMenu()">Kembali ke Beranda</button>
+  </div>
+
+</div>
+
+<div class="footer">
+    <h2>© 2025 Museum Kota Bandung</h2>
+    <p>Website resmi Museum Kota Bandung | Dibuat oleh kelompok 1 </p>
+</div>
+
+<script>
+function kirimRelawan(e){
+  e.preventDefault();
+
+  let dataRelawan = JSON.parse(localStorage.getItem("relawan")) || [];
+
+  dataRelawan.push({
+    nama: document.getElementById("namaRelawan").value,
+    email: document.getElementById("emailRelawan").value,
+    posisi: document.getElementById("posisiRelawan").value,
+    motivasi: document.getElementById("motivasiRelawan").value,
+    waktu: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("relawan", JSON.stringify(dataRelawan));
+
+  e.target.reset();
+  hideAll();
+  document.getElementById("notif-area").style.display = "block";
+}
+
+/* ===== DONATUR → LOCALSTORAGE ===== */
+function kirimForm(e, jenis){
+  e.preventDefault();
+
+  if(jenis === "donatur"){
+    let donasi = JSON.parse(localStorage.getItem("donatur")) || [];
+
+    donasi.push({
+      nama: e.target[0].value,
+      email: e.target[1].value,
+      nominal: e.target[2].value,
+      waktu: new Date().toLocaleString()
+    });
+
+    localStorage.setItem("donatur", JSON.stringify(donasi));
+  }
+
+  hideAll();
+  document.getElementById("notif-title").innerText =
+    jenis === "donatur" ? "Terima Kasih, Orang Baik!" : "Pendaftaran Berhasil";
+  document.getElementById("notif-text").innerText =
+    "Data berhasil dikirim ke dashboard admin.";
+  document.getElementById("notif-area").style.display = "block";
+}
+  // reset form
+  e.target.reset();
+
+  // tampilkan notifikasi yang SUDAH ADA
+  hideAll();
+  document.getElementById("notif-area").style.display = "block";
+
+
+</script>
+
+</body>
+</html>

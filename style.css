@@ -1,0 +1,178 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #ffefdf;
+  color: #e5e7eb;
+}
+
+/* ===== LAYOUT ===== */
+header {
+  background: #d27e4a;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+header h1 {
+  font-size: 1.4rem;
+}
+
+nav a {
+  color: #ffff;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 0.95rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #d27e4a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+/* ===== BUTTON ===== */
+button {
+  background: #ffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #0ea5e9;
+}
+
+button:active {
+  background: #0284c7;
+}
+
+/* ===== ADMIN DASHBOARD LAYOUT ===== */
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: #d27e4a;
+  border-right: 1px solid #1e293b;
+  padding: 1.5rem 1rem;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sidebar a {
+  display: block;
+  color: #cbd5f5;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #1e293b;
+  color: #ffff;
+}
+
+/* MAIN CONTENT */
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+  background: #ffefdf;
+}
+/* ===== CMS FORM ELEMENTS ===== */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #1e293b;
+  background: #ffefdf;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ===== CMS LIST ===== */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* ===== DANGER BUTTON ===== */
+button.danger {
+  background: #ef4444;
+}
+
+button.danger:hover {
+  background: #dc2626;
+}
+
+/* ===== ADMIN SECTION VISUAL ===== */
+.sidebar a[data-section] {
+  margin-left: 0.5rem;
+}
+
+.sidebar a[data-section].active {
+  background: #1e293b;
+  color: #ffff;
+  font-weight: 600;
+}
+
+header h1 {
+  letter-spacing: 0.5px;
+}
+
+header h1::after {
+  content: " • Museum Sejarah Kota Bandung";
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+

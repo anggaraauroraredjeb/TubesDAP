@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Admin</title>
+
+<style>
+/* ===== GLOBAL ===== */
+*{
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url(https://www.beritainspiratif.com/assets/uploads/2022/07/tt7zbid6webl_mid.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #f9b05d, #d27e4a);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-navbar {
+    height: 90px;
+    margin-right: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #333;
+    padding: 12px 15px;
+}
+
+.dropdown-menu a:hover {
+    background: #f9b05d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ===== LOGIN WRAPPER ===== */
+.login-wrapper{
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== FORM ===== */
+form {
+    width: 350px;
+    background: rgba(0,0,0,0.55);
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+}
+
+/* ===== TITLE ===== */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 32px; 
+}
+
+/* ===== INPUT ===== */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border: none;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+/* ===== BUTTON ===== */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #ffe69c;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover{
+    background:#ffd86a;
+}
+
+/* ===== MESSAGE ===== */
+.message {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}
+
+.error { color: #ff4d4d; }
+.success { color: #6bc1ff; }
+
+.footer{
+    padding:30px;
+    text-align:center;
+    background:linear-gradient(to right, #f9b05d, #d27e4a);
+    color:white;
+    font-size:14px;
+}
+
+.footer h2{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.footer p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#eee;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:500px){
+    form{
+        width:90%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="Logomuseum.png" class="logo-navbar">
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Beranda</a>
+        <a href="appointment.html">Reservasi Museum</a>
+        <a href="registrasipengunjung.html">Registrasi Pengunjung</a>
+
+        <div class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">Museum Virtual</a>
+            <div class="dropdown-menu">
+                <a href="museumLayout.html">Layout Interaktif</a>
+                <a href="virtualTour.html">Virtual Tour</a>
+                <a href="virtualTour3D.html">Virtual Tour 3D</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">Informasi</a>
+            <div class="dropdown-menu">
+                <a href="maps.html">Maps</a>
+                <a href="contactform.html">Contact Us</a>
+                <a href="event.html">Jadwal Event</a>
+                <a href="pameran.html">Pameran</a>
+                <a href="Relawan.html">Relawan & Donatur</a>
+            </div>
+        </div>
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<!-- ===== LOGIN ===== -->
+<div class="login-wrapper">
+    <form onsubmit="login(event)">
+        <h2>LOGIN ADMIN</h2>
+
+        <input type="text" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+
+        <div class="message error" id="error-msg">Password salah!</div>
+    </form>
+</div>
+
+<div class="footer">
+    <h2>© 2025 Museum Kota Bandung</h2>
+    <p>Website resmi Museum Kota Bandung | Dibuat oleh Kelompok 1</p>
+</div>
+
+<script>
+function login(e) {
+    e.preventDefault();
+
+    const pass = document.getElementById("password").value;
+
+    if (pass === "12345") {
+        window.location.href ="dashboard.html";
+    } else {
+        document.getElementById("error-msg").style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>

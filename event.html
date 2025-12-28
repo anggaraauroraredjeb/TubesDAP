@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Event Museum Kota Bandung</title>
+    <style>
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #f9b05d, #d27e4a);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-navbar {
+    height: 90px;
+    margin-right: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #333;
+    padding: 12px 15px;
+}
+
+.dropdown-menu a:hover {
+    background: #f9b05d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+        /* --- Konfigurasi Dasar --- */
+        :root {
+            --primary-orange: #ff9800;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+        }
+
+        .event-section {
+            padding: 60px 20px;
+            background-color: #ffefdf;
+            min-height: 100vh; /* Agar footer tidak naik jika konten sedikit */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* --- Judul Section --- */
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            border-left: 6px solid var(--primary-orange);
+            padding-left: 20px;
+            line-height: 1;
+        }
+
+        .section-desc {
+            margin-bottom: 40px;
+            padding-left: 26px;
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        /* --- Grid Layout --- */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px; /* Jarak antara card dan footer */
+        }
+
+        /* --- Kartu Event --- */
+        .event-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-orange);
+            display: flex;
+            flex-direction: row;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- Bagian Tanggal (Kotak Kiri) --- */
+        .event-date {
+            background-color: #333;
+            color: var(--primary-orange);
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .event-date .day {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* --- Bagian Konten --- */
+        .event-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-orange);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: var(--text-dark);
+        }
+
+        .event-summary {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        /* --- Meta Info (Jam & Lokasi) --- */
+        .event-meta {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        /* --- Tombol Detail --- */
+        .btn-detail {
+            text-decoration: none;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background-color 0.2s;
+            text-transform: uppercase;
+            display: block; /* Memastikan tombol mengisi lebar container */
+        }
+
+        .btn-detail:hover {
+            background-color: #e68900;
+        }
+
+  .footer{
+    padding:30px;
+    text-align:center;
+    background:linear-gradient(to right, #f9b05d, #d27e4a);
+    color:white;
+    font-size:14px;
+}
+
+.footer h2{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.footer p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#eee;
+}
+        /* --- Responsif untuk Layar Kecil (HP) --- */
+        @media (max-width: 576px) {
+            .event-card {
+                flex-direction: column;
+            }
+            
+            .event-date {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 10px 20px;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .event-date .day { font-size: 20px; }
+            .event-date .month { margin-top: 0; align-self: center; }
+        }
+/* PANAH DROPDOWN */
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arrow{
+    font-size: 12px;
+    transition: transform 0.5s ease;
+}
+
+/* Panah muter saat hover (desktop) */
+.dropdown:hover .arrow{
+    transform: rotate(180deg);
+}
+</style>
+</head>
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="Logomuseum.png" class="logo-navbar">
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Beranda</a>
+        <a href="appointment.html">Reservasi Museum</a>
+        <a href="registrasipengunjung.html">Registrasi Pengunjung</a>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+            Museum Virtual <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="museumLayout.html">Layout Interaktif</a>
+                <a href="virtualTour.html">Virtual Tour</a>
+                <a href="virtualTour3D.html">Virtual Tour 3D</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+               Informasi <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="maps.html">Maps</a>
+                <a href="contactform.html">Contact Us</a>
+                <a href="event.html">Jadwal Event</a>
+                <a href="pameran.html">Pameran</a>
+                <a href="Relawan.html">Relawan & Donatur</a>
+            </div>
+        </div>
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+    <section id="jadwal-event" class="event-section">
+        <div class="container">
+            <h2 class="section-title">Jadwal Event Museum</h2>
+            <p class="section-desc">Ikuti agenda kegiatan sejarah, seni, dan budaya terbaru di Museum Kota Bandung.</p>
+            
+            <div class="event-grid" id="eventGrid"></div>
+            </section>
+
+            <div class="footer">
+                <h2>© 2025 Museum Kota Bandung</h2>
+                <p>Website resmi Museum Kota Bandung | Dibuat oleh kelompok 1</p>
+            </div>
+    
+        </div>
+    
+<script>
+let dataEvent = JSON.parse(localStorage.getItem("event")) || [];
+let eventGrid = document.getElementById("eventGrid");
+
+eventGrid.innerHTML = "";
+
+if(dataEvent.length === 0){
+    eventGrid.innerHTML = "<p>Belum ada event yang dijadwalkan.</p>";
+}else{
+    dataEvent.forEach(ev => {
+        if(!ev.judul) return; // ⛔ skip data rusak
+
+        let tgl = ev.tanggal ? ev.tanggal.split(" ") : ["",""];
+
+        eventGrid.innerHTML += `
+        <article class="event-card">
+            <div class="event-date">
+                <span class="day">${tgl[0]}</span>
+                <span class="month">${tgl[1]}</span>
+            </div>
+            <div class="event-content">
+                <span class="event-category">${ev.kategori}</span>
+                <h3 class="event-title">${ev.judul}</h3>
+                <p class="event-summary">${ev.isi}</p>
+                <div class="event-meta">
+                    <span>🕒 ${ev.jam}</span>
+                    <span>📍 ${ev.lokasi}</span>
+                </div>
+            </div>
+        </article>`;
+    });
+}
+</script>
+
+</body>
+</html>

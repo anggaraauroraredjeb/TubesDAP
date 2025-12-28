@@ -1,0 +1,518 @@
+                                                                                                                                      <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin Museum</title>
+
+<style>
+*{box-sizing:border-box;font-family:Poppins,Arial}
+body{margin:0;background:#ffefdf}
+@media (max-width: 1024px){
+  .sidebar{
+    width:200px;
+  }
+}
+
+@media (max-width: 768px){
+  .wrapper{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .sidebar a{
+    width:48%;
+    text-align:center;
+  }
+
+  header{
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+  }
+}
+
+@media (max-width: 480px){
+  .sidebar a{
+    width:100%;
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+}
+
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:linear-gradient(to right,#ff981b,#e3c8ad);
+  color:#fff;
+  padding:18px 30px;
+  font-size:22px;
+  font-weight:600;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+header button{
+  background:#e74c3c;
+  border:none;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer
+}
+
+header button:hover{
+  background:#c0392b;
+}
+
+/* LAYOUT */
+.wrapper{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  background:linear-gradient(to bottom,#ffb86c,#ff9f40);
+  padding:25px;
+  color:#fff
+}
+.sidebar h3{text-align:center;margin-bottom:25px}
+.sidebar a{
+  display:block;color:#fff;text-decoration:none;
+  padding:12px;margin-bottom:12px;
+  background:rgba(255,255,255,.25);
+  border-radius:8px
+}
+.sidebar a:hover{background:#ff9800}
+
+/* CONTENT */
+.content{flex:1;padding:30px}
+
+/* SECTION */
+.section{
+  background:#fff;
+  padding:22px;
+  border-radius:12px;
+  margin-bottom:30px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08)
+}
+.section h2{
+  margin-top:0;
+  border-left:6px solid #ff9800;
+  padding-left:12px
+}
+
+/* FORM */
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:6px;
+  border:1px solid #ccc
+}
+button{
+  background:#ff9800;
+  color:#fff;
+  border:none;
+  padding:10px 20px;
+  border-radius:6px;
+  font-weight:600;
+  cursor:pointer
+}
+button:hover{background:#e68900}
+
+/* PESAN RESERVASI */
+.msg-box{
+  border:1px solid #ddd;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:20px;
+  background:#fff
+}
+.badge{
+  display:inline-block;
+  padding:8px 16px;
+  font-size:13px;
+  color:#fff;
+  border-radius:20px;
+  margin-bottom:14px;
+  font-weight:600
+}
+.reservasi{background:#2ecc71}
+.msg-box p{margin:6px 0;font-size:15px}
+.msg-box button{background:#e74c3c;margin-top:12px}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #ddd;padding:10px}
+th{background:#ff9800;color:#fff}
+tr:nth-child(even){background:#f9f9f9}
+</style>
+</head>
+
+<body>
+
+<header>
+  <span>Dashboard Admin Museum</span>
+  <button onclick="logout()">Logout</button>
+</header>
+
+<div class="wrapper">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h3>MENU ADMIN</h3>
+  <a href="#pesan">📩 Pesan Reservasi</a>
+  <a href="#statistik">📊 Statistik Pengunjung</a>
+  <a href="#event">📅 Jadwal Event</a>
+  <a href="#pameran">🖼️ Pameran & Koleksi</a>
+  <a href="#relawan">🤝 Data Relawan</a>
+  <a href="contactfrom.html">Masukkan Pesan & Kritik</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- PESAN RESERVASI (JANGAN DIHILANGKAN) -->
+<div class="section" id="pesan">
+<h2>Pesan Reservasi Tempat</h2>
+<div id="pesanMasuk"></div>
+</div>
+
+<div class="section" id="contact">
+<h2>Pesan Contact Masuk</h2>
+<div id="contactMasuk"></div>
+</div>
+
+<!-- STATISTIK -->
+<div class="section" id="statistik">
+<h2>Laporan Registrasi Pengunjung</h2>
+<p id="totalPengunjung"></p>
+
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Nama</th>
+<th>Jenis</th>
+<th>Total</th>
+<th>Telepon</th>
+<th>Alamat</th>
+</tr>
+</thead>
+<tbody id="dataRegistrasi"></tbody>
+</table>
+</div>
+
+<!-- EVENT -->
+<div class="section" id="event">
+<h2>Input Jadwal Event</h2>
+
+<input id="eventJudul" placeholder="Judul Event">
+<input id="eventKategori" placeholder="Kategori Event">
+<input id="eventTanggal" placeholder="Tanggal (15 DES)">
+<input id="eventJam" placeholder="Jam">
+<input id="eventLokasi" placeholder="Lokasi">
+<textarea id="eventIsi" placeholder="Deskripsi Event"></textarea>
+
+<button onclick="simpanEvent()">Simpan Event</button>
+
+<h3 style="margin-top:20px">Daftar Event</h3>
+<div id="listEvent"></div>
+</div>
+
+<!-- PAMERAN -->
+<div class="section" id="pameran">
+<h2>Input Pameran</h2>
+
+<input id="pameranJudul" placeholder="Judul Pameran">
+<textarea id="pameranIsi" placeholder="Deskripsi"></textarea>
+
+<!-- TAMBAHAN INPUT FOTO -->
+<input type="file" id="pameranFoto" accept="image/*">
+
+<button onclick="simpanPameran()">Simpan Pameran</button>
+
+<!-- PREVIEW -->
+<h3 style="margin-top:20px">Daftar Pameran</h3>
+<div id="previewPameran"></div>
+</div>
+
+<!-- RELAWAN -->
+<div class="section" id="relawan">
+<h2>Data Relawan</h2>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Nama</th>
+<th>Email</th>
+<th>Posisi</th>
+<th>Motivasi</th>
+<th>Waktu</th>
+</tr>
+</thead>
+<tbody id="dataRelawan"></tbody>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+// LOGOUT
+function logout(){
+  if(confirm("Yakin ingin logout?")){
+    window.location.href="login.html";
+  }
+}
+
+
+// PESAN RESERVASI
+let dataReservasi=JSON.parse(localStorage.getItem("appointment"))||[];
+let pesanMasuk=document.getElementById("pesanMasuk");
+if(dataReservasi.length===0){
+  pesanMasuk.innerHTML="<p>Belum ada reservasi masuk.</p>";
+}
+dataReservasi.forEach((r,i)=>{
+  pesanMasuk.innerHTML+=`
+  <div class="msg-box">
+    <span class="badge reservasi">Reservasi Tempat</span>
+    <p><b>Penanggung Jawab:</b> ${r.nama}</p>
+    <p><b>Instansi:</b> ${r.instansi}</p>
+    <p><b>Jumlah Peserta:</b> ${r.jumlah}</p>
+    <p><b>Tanggal:</b> ${r.tanggal}</p>
+    <p><b>Telepon:</b> ${r.telepon}</p>
+    <button onclick="hapusReservasi(${i})">Hapus</button>
+  </div>`;
+});
+function hapusReservasi(i){
+  if(confirm("Hapus reservasi ini?")){
+    dataReservasi.splice(i,1);
+    localStorage.setItem("appointment",JSON.stringify(dataReservasi));
+    location.reload();
+  }
+}
+
+// ===== CONTACT MESSAGE =====
+let contactMasuk = document.getElementById("contactMasuk");
+let dataContact = JSON.parse(localStorage.getItem("contact")) || [];
+
+if(dataContact.length === 0){
+  contactMasuk.innerHTML = "<p>Belum ada pesan contact.</p>";
+}else{
+  dataContact.forEach((c,i)=>{
+    contactMasuk.innerHTML += `
+      <div class="msg-box">
+        <span class="badge reservasi">Contact</span>
+        <p><b>Nama:</b> ${c.nama}</p>
+        <p><b>Email:</b> ${c.email}</p>
+        <p><b>Subjek:</b> ${c.subject || "-"}</p>
+        <p><b>Pesan:</b><br>${c.message}</p>
+        <p><small>${c.waktu}</small></p>
+        <button onclick="hapusContact(${i})">Hapus</button>
+      </div>
+    `;
+  });
+}
+
+function hapusContact(index){
+  if(confirm("Hapus pesan ini?")){
+    dataContact.splice(index,1);
+    localStorage.setItem("contact", JSON.stringify(dataContact));
+    location.reload();
+  }
+}
+
+// REGISTRASI
+let registrasi=JSON.parse(localStorage.getItem("registrasi"))||[];
+let tabel=document.getElementById("dataRegistrasi");
+document.getElementById("totalPengunjung").innerHTML="<b>Total Data:</b> "+registrasi.length;
+if(registrasi.length===0){
+  tabel.innerHTML=`<tr><td colspan="6" align="center">Belum ada data</td></tr>`;
+}else{
+  registrasi.forEach((r,i)=>{
+    tabel.innerHTML+=`
+    <tr>
+      <td>${i+1}</td>
+      <td>${r.nama}</td>
+      <td>${r.jenis}</td>
+      <td>${r.total}</td>
+      <td>${r.telepon}</td>
+      <td>${r.alamat}</td>
+    </tr>`;
+  });
+}
+
+// ===== EVENT =====
+let listEvent = document.getElementById("listEvent");
+let dataEvent = JSON.parse(localStorage.getItem("event")) || [];
+
+function simpanEvent(){
+  let judul = document.getElementById("eventJudul").value;
+  let kategori = document.getElementById("eventKategori").value;
+  let tanggal = document.getElementById("eventTanggal").value;
+  let jam = document.getElementById("eventJam").value;
+  let lokasi = document.getElementById("eventLokasi").value;
+  let isi = document.getElementById("eventIsi").value;
+
+  if(judul==="" || isi===""){
+    alert("Judul dan deskripsi wajib diisi");
+    return;
+  }
+
+  dataEvent.push({
+    judul,
+    kategori,
+    tanggal,
+    jam,
+    lokasi,
+    isi
+  });
+
+  localStorage.setItem("event", JSON.stringify(dataEvent));
+  tampilEvent();
+  alert("Event berhasil disimpan");
+}
+
+function tampilEvent(){
+  listEvent.innerHTML = "";
+
+  if(dataEvent.length === 0){
+    listEvent.innerHTML = "<p>Belum ada event.</p>";
+    return;
+  }
+
+  dataEvent.forEach((e,i)=>{
+    listEvent.innerHTML += `
+      <div class="msg-box">
+        <span class="badge reservasi">Event</span>
+        <p><b>${e.judul}</b></p>
+        <p>${e.isi}</p>
+        <p>🕒 ${e.jam} | 📍 ${e.lokasi}</p>
+        <button onclick="hapusEvent(${i})">Hapus</button>
+      </div>
+    `;
+  });
+}
+
+function hapusEvent(index){
+  if(confirm("Yakin ingin menghapus event ini?")){
+    dataEvent.splice(index,1);
+    localStorage.setItem("event", JSON.stringify(dataEvent));
+    tampilEvent();
+  }
+}
+
+// tampil otomatis saat dashboard dibuka
+tampilEvent();
+
+
+// ===== PAMERAN =====
+let previewPameran = document.getElementById("previewPameran");
+let dataPameran = JSON.parse(localStorage.getItem("pameran")) || [];
+
+function tampilPameran(){
+  previewPameran.innerHTML = "";
+
+  if(dataPameran.length === 0){
+    previewPameran.innerHTML = "<p>Belum ada pameran.</p>";
+    return;
+  }
+
+  dataPameran.forEach((p,i)=>{
+    previewPameran.innerHTML += `
+      <div class="msg-box">
+        <span class="badge reservasi">Pameran</span>
+        <p><b>${p.judul}</b></p>
+        <p>${p.isi}</p>
+        <img src="${p.foto}" style="max-width:200px;border-radius:8px">
+        <br>
+        <button onclick="hapusPameran(${i})">Hapus</button>
+      </div>
+    `;
+  });
+}
+function simpanPameran(){
+  let judul = document.getElementById("pameranJudul").value.trim();
+  let isi = document.getElementById("pameranIsi").value.trim();
+  let fotoInput = document.getElementById("pameranFoto");
+
+  if(judul === "" || isi === ""){
+    alert("Judul dan deskripsi wajib diisi");
+    return;
+  }
+
+  if(fotoInput.files.length === 0){
+    alert("Silakan pilih foto pameran");
+    return;
+  }
+
+  let reader = new FileReader();
+  reader.onload = function(){
+    dataPameran.push({
+      judul: judul,
+      isi: isi,
+      foto: reader.result
+    });
+
+    localStorage.setItem("pameran", JSON.stringify(dataPameran));
+
+    // reset form
+    document.getElementById("pameranJudul").value = "";
+    document.getElementById("pameranIsi").value = "";
+    fotoInput.value = "";
+
+    tampilPameran();
+    alert("Pameran berhasil disimpan");
+  };
+
+  reader.readAsDataURL(fotoInput.files[0]);
+}
+
+function hapusPameran(index){
+  if(confirm("Yakin ingin menghapus pameran ini?")){
+    dataPameran.splice(index,1);
+    localStorage.setItem("pameran", JSON.stringify(dataPameran));
+    tampilPameran();
+  }
+}
+
+// tampil otomatis
+tampilPameran();
+
+// RELAWAN
+let relawan=JSON.parse(localStorage.getItem("relawan"))||[];
+let tabelRelawan=document.getElementById("dataRelawan");
+if(relawan.length===0){
+  tabelRelawan.innerHTML=`<tr><td colspan="6" align="center">Belum ada data relawan</td></tr>`;
+}else{
+  relawan.forEach((r,i)=>{
+    tabelRelawan.innerHTML+=`
+    <tr>
+      <td>${i+1}</td>
+      <td>${r.nama}</td>
+      <td>${r.email}</td>
+      <td>${r.posisi}</td>
+      <td>${r.motivasi}</td>
+      <td>${r.waktu}</td>
+    </tr>`;
+  });
+}
+</script>
+
+</body>
+</html>

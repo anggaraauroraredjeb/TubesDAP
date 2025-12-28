@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pameran Museum Kota Bandung</title>
+
+<style>
+/* ===== PAGE ===== */
+body{
+ margin:0;
+ font-family:'Segoe UI',Tahoma,sans-serif;
+ background:#ffefdf;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #f9b05d, #d27e4a);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-navbar {
+    height: 90px;
+    margin-right: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #333;
+    padding: 12px 15px;
+}
+
+.dropdown-menu a:hover {
+    background: #f9b05d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.section{
+ padding:60px 20px;
+ min-height:100vh;
+}
+.container{
+ max-width:1100px;
+ margin:auto;
+}
+.section-title{
+ font-size:32px;
+ font-weight:800;
+ border-left:6px solid #ff9800;
+ padding-left:20px;
+ margin-bottom:10px;
+}
+.section-desc{
+ color:#666;
+ margin-bottom:40px;
+ padding-left:26px;
+}
+
+/* ===== GRID PAMERAN ===== */
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+ gap:10px;
+}
+
+.card{
+ background:#fff;
+ border-radius:10px;
+ overflow:hidden;
+ box-shadow:0 8px 20px rgba(0,0,0,.1);
+ transition:.3s;
+}
+
+.card:hover{
+ transform:translateY(-6px);
+}
+
+.card img{
+ width:100%;
+ aspect-ratio:1 / 0;
+ object-fit:cover;
+}
+
+.card h3{
+ padding:15px;
+ margin:0;
+ text-align:center;
+}
+
+.footer{
+    padding:30px;
+    text-align:center;
+    background:linear-gradient(to right, #f9b05d, #d27e4a);
+    color:white;
+    font-size:14px;
+}
+
+.footer h2{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.footer p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#eee;
+}
+/* PANAH DROPDOWN */
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arrow{
+    font-size: 12px;
+    transition: transform 0.5s ease;
+}
+
+/* Panah muter saat hover (desktop) */
+.dropdown:hover .arrow{
+    transform: rotate(180deg);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="Logomuseum.png" class="logo-navbar">
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Beranda</a>
+        <a href="appointment.html">Reservasi Museum</a>
+        <a href="registrasipengunjung.html">Registrasi Pengunjung</a>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+            Museum Virtual <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="museumLayout.html">Layout Interaktif</a>
+                <a href="virtualTour.html">Virtual Tour</a>
+                <a href="virtualTour3D.html">Virtual Tour 3D</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+               Informasi <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="maps.html">Maps</a>
+                <a href="contactform.html">Contact Us</a>
+                <a href="event.html">Jadwal Event</a>
+                <a href="pameran.html">Pameran</a>
+                <a href="Relawan.html">Relawan & Donatur</a>
+            </div>
+        </div>
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<section class="section">
+<div class="container">
+<h2 class="section-title">Pameran Museum</h2>
+<p class="section-desc">Koleksi dan pameran seni, sejarah, dan budaya Museum Kota Bandung.</p>
+
+<div class="grid" id="pameranGrid"></div>
+</div>
+</section>
+
+<!-- POPUP -->
+<div id="popup" style="
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+z-index:9999">
+ <div style="
+ background:#fff;
+ max-width:500px;
+ width:90%;
+ padding:25px;
+ border-radius:15px;
+ position:relative">
+  <button onclick="tutupPopup()" style="
+   position:absolute;
+   top:10px;right:10px;
+   background:#e74c3c;
+   color:#fff;
+   border:none;
+   padding:6px 12px;
+   border-radius:6px;
+   cursor:pointer">X</button>
+
+  <h2 id="popupJudul"></h2>
+  <img id="popupFoto" style="width:100%;border-radius:10px;margin:15px 0">
+  <p id="popupIsi"></p>
+ </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<h2>© 2025 Museum Kota Bandung</h2>
+<p>Website resmi Museum Kota Bandung | Dibuat oleh Kelompok 1</p>
+</div>
+
+<script>
+let data = JSON.parse(localStorage.getItem("pameran")) || [];
+let grid = document.getElementById("pameranGrid");
+
+if(data.length===0){
+ grid.innerHTML="<p>Belum ada pameran.</p>";
+}else{
+ data.forEach((p,i)=>{
+  grid.innerHTML+=`
+   <div class="card" onclick="bukaPopup(${i})">
+    <img src="${p.foto}">
+    <h3>${p.judul}</h3>
+   </div>`;
+ });
+}
+
+function bukaPopup(i){
+ let p=data[i];
+ popupJudul.innerText=p.judul;
+ popupFoto.src=p.foto;
+ popupIsi.innerText=p.isi;
+ popup.style.display="flex";
+}
+function tutupPopup(){
+ popup.style.display="none";
+}
+</script>
+
+</body>
+</html>

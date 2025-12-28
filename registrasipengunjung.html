@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrasi Pengunjung Museum</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:"Poppins", Arial, sans-serif;
+}
+
+body{
+    margin:0;
+    background:#ffefdf;
+    color:#333;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #f9b05d, #d27e4a);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-navbar {
+    height: 90px;
+    margin-right: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #333;
+    padding: 12px 15px;
+}
+
+.dropdown-menu a:hover {
+    background: #f9b05d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.section{
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
+}
+
+.title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:10px;
+}
+
+.title span{
+    width:6px;
+    height:30px;
+    background:#ff9800;
+}
+
+.title h1{
+    margin:0;
+    font-size:30px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:40px;
+}
+
+.wrapper{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:40px;
+}
+
+.contact-box{
+    padding:30px;
+    border-radius:10px;
+}
+
+.contact-item{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.contact-item i{
+    font-size:20px;
+    color:#ff9800;
+    margin-top:4px;
+}
+
+.contact-item h4{
+    margin:0;
+    color:#ff9800;
+}
+
+.contact-item p{
+    margin:6px 0 0;
+    line-height:1.6;
+}
+
+.container h2{
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:600;
+    display:block;
+    margin-bottom:6px;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    margin-bottom:20px;
+    font-size:15px;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#ff9800;
+}
+
+.btn{
+    background:#ff9800;
+    color:#fff;
+    border:none;
+    padding:14px 28px;
+    font-size:16px;
+    font-weight:600;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#e68900;
+}
+
+.success-msg{
+    display:none;
+    background:#eef5ee;
+    padding:25px;
+    border-radius:8px;
+    color:#1f4d1f;
+    line-height:1.7;
+}
+
+@media(max-width:900px){
+    .wrapper{
+        grid-template-columns:1fr;
+    }
+    .hero{
+        height:30vh;
+    }
+}
+
+.footer{
+    padding:30px;
+    text-align:center;
+    background:linear-gradient(to right, #f9b05d, #d27e4a);
+    color:white;
+    font-size:14px;
+}
+
+.footer h2{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.footer p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#eee;
+}
+/* PANAH DROPDOWN */
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arrow{
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+/* Panah muter saat hover (desktop) */
+.dropdown:hover .arrow{
+    transform: rotate(180deg);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="Logomuseum.png" class="logo-navbar">
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Beranda</a>
+        <a href="appointment.html">Reservasi Museum</a>
+        <a href="registrasipengunjung.html">Registrasi Pengunjung</a>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+            Museum Virtual <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="museumLayout.html">Layout Interaktif</a>
+                <a href="virtualTour.html">Virtual Tour</a>
+                <a href="virtualTour3D.html">Virtual Tour 3D</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+               Informasi <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="maps.html">Maps</a>
+                <a href="contactform.html">Contact Us</a>
+                <a href="event.html">Jadwal Event</a>
+                <a href="pameran.html">Pameran</a>
+                <a href="Relawan.html">Relawan & Donatur</a>
+            </div>
+        </div>
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<div class="hero"></div>
+
+<div class="section">
+    <div class="title">
+        <span></span>
+        <h1>SELAMAT DATANG DI MUSEUM KOTA BANDUNG</h1>
+    </div>
+    <p class="subtitle">
+        Silakan melakukan registrasi sebelum memasuki area museum.
+    </p>
+
+    <div class="wrapper">
+
+        <div class="contact-box">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Alamat</h4>
+                    <p>Jl. Aceh No.47, Kota Bandung</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>Telepon</h4>
+                    <p>(022) 420xxxx</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>Jam Operasional</h4>
+                    <p>09.00 – 15.00 WIB</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Form Registrasi Pengunjung</h2>
+
+            <form id="formRegistrasi">
+                <label>Nama</label>
+                <input type="text" id="nama" required>
+
+                <label>Jenis Pengunjung</label>
+                <select id="jenis" required>
+                    <option value="">Please Select</option>
+                    <option>Individu</option>
+                    <option>Pelajar / Mahasiswa</option>
+                    <option>Rombongan</option>
+                </select>
+
+                <label>Total Pengunjung</label>
+                <input type="number" id="total" required>
+
+                <label>No Telepon Aktif</label>
+                <input type="text" id="telepon" required>
+
+                <label>Alamat</label>
+                <input type="text" id="alamat" required>
+
+                <button type="submit" class="btn">Kirim Registrasi</button>
+            </form>
+
+            <div id="successMsg" class="success-msg">
+                <strong>Registrasi berhasil dikirim.</strong><br><br>
+                Terima kasih telah melakukan registrasi kunjungan.
+                Data pengunjung telah kami terima dan akan digunakan
+                sebagai bagian dari proses administrasi Museum Kota Bandung.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const form = document.getElementById("formRegistrasi");
+const successMsg = document.getElementById("successMsg");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let data = JSON.parse(localStorage.getItem("registrasi")) || [];
+
+    data.push({
+        nama: nama.value,
+        jenis: jenis.value,
+        total: total.value,
+        telepon: telepon.value,
+        alamat: alamat.value
+    });
+
+    localStorage.setItem("registrasi", JSON.stringify(data));
+
+    form.style.display = "none";
+    successMsg.style.display = "block";
+});
+</script>
+
+<div class="footer">
+    <h2>© 2025 Museum Kota Bandung</h2>
+    <p>Website resmi Museum Kota Bandung | Dibuat oleh kelompok 1</p>
+</div>
+
+</body>
+</html>

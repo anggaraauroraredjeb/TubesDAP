@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Detail Pameran & Koleksi | Museum Kota Bandung</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#ffffff;
+  color:#000;
+}
+
+.header{
+  padding:20px;
+  background:#f5f5f5;
+}
+
+.header h1{
+  margin:0;
+  font-size:24px;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+img{
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  margin-bottom:25px;
+}
+
+h2{
+  margin-bottom:15px;
+  font-size:28px;
+}
+
+p{
+  font-size:16px;
+  line-height:1.8;
+  text-align:justify;
+}
+
+.back{
+  margin-top:30px;
+  display:inline-block;
+  text-decoration:none;
+  color:#000;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Museum Sejarah Kota Bandung</h1>
+</div>
+
+<div class="container">
+  <h2 id="title"></h2>
+  <img id="image" src="">
+  <p id="content"></p>
+
+  <a class="back" href="pameran.html">← Kembali ke Pameran & Koleksi</a>
+</div>
+
+<script>
+const data = {
+  awal: {
+    title: "Awal Pembentukan Kota Bandung",
+    image: "awal.jpg",
+    content: "Ruang pameran ini menjelaskan asal-usul terbentuknya Kota Bandung, dimulai dari pemindahan pusat pemerintahan Kabupaten Bandung hingga penetapan wilayah kota. Informasi disajikan melalui arsip, peta lama, dan dokumentasi sejarah."
+  },
+  kolonial: {
+    title: "Bandung Masa Kolonial",
+    image: "kolonial.jpg",
+    content: "Pameran ini menampilkan perkembangan Kota Bandung pada masa pemerintahan Hindia Belanda, termasuk kebijakan tata kota, pembangunan infrastruktur, serta bangunan-bangunan bersejarah yang masih berdiri hingga saat ini."
+  },
+  kemerdekaan: {
+    title: "Masa Perjuangan dan Kemerdekaan",
+    image: "kemerdekaan.jpg",
+    content: "Ruang ini mengulas peristiwa penting perjuangan rakyat Bandung dalam mempertahankan kemerdekaan, khususnya peristiwa Bandung Lautan Api yang menjadi simbol perlawanan masyarakat."
+  },
+  modern: {
+    title: "Bandung Kota Modern",
+    image: "modern.jpg",
+    content: "Pameran ini menggambarkan perkembangan Kota Bandung setelah kemerdekaan hingga menjadi kota modern, meliputi sektor pendidikan, pemerintahan, ekonomi, dan kebudayaan."
+  },
+  foto: {
+    title: "Foto Bandung Tempo Dulu",
+    image: "foto.jpg",
+    content: "Koleksi foto-foto dokumentasi yang merekam kondisi Kota Bandung pada berbagai periode, mulai dari suasana jalan, permukiman, hingga aktivitas masyarakat pada masa lampau."
+  },
+  arsip: {
+    title: "Arsip dan Dokumen Kota",
+    image: "arsip.jpg",
+    content: "Berisi arsip resmi pemerintahan Kota Bandung, seperti surat keputusan, laporan tahunan, dan dokumen administrasi yang memiliki nilai sejarah."
+  },
+  peta: {
+    title: "Peta Perkembangan Kota",
+    image: "peta.jpg",
+    content: "Menampilkan peta-peta historis yang menunjukkan perubahan wilayah dan tata ruang Kota Bandung dari masa ke masa."
+  },
+  bangunan: {
+    title: "Replika Bangunan Bersejarah",
+    image: "bangunan.jpg",
+    content: "Koleksi replika bangunan bersejarah yang menjadi penanda perkembangan arsitektur dan tata kota Bandung."
+  },
+  pers: {
+    title: "Koleksi Pers Bandung",
+    image: "pers.jpg",
+    content: "Menampilkan surat kabar, majalah, dan media cetak lama yang terbit di Bandung dan berperan dalam penyebaran informasi sejarah kota."
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if (data[id]) {
+  document.getElementById("title").innerText = data[id].title;
+  document.getElementById("image").src = data[id].image;
+  document.getElementById("content").innerText = data[id].content;
+} else {
+  document.getElementById("title").innerText = "Data Tidak Ditemukan";
+  document.getElementById("content").innerText = "Informasi yang Anda cari tidak tersedia.";
+}
+</script>
+
+</body>
+</html>
